@@ -3,9 +3,24 @@ module CouchMixin
   def self.included(base)
     base.extend ClassMethods
     base.class_eval do
-      cattr_accessor :database
+      #cattr_accessor :database
     end
   end
+
+  # def method_missing(method_symbol, *arguments)
+  #   method_name = method_symbol.to_s
+
+  #   case method_name[-1..-1]
+  #   when "="
+  #     self[method_name[0..-2]] = arguments.first
+  #   when "?"
+  #     !! self[method_name[0..-2]]
+  #   else
+  #     # Returns nil on failure so forms will work
+  #     key?(method_name) ? self[method_name] : nil
+  #   end
+  # end
+
 
   module ClassMethods
     def set_database_name(name)
@@ -28,13 +43,15 @@ module CouchMixin
         end
       end
 
-
-
       CouchRest.database!(full_url_to_database)
     end
 
     def raw_view(view_name, options={})
       database.view(view_name,options)
+    end
+
+    def get(id,options={})
+      new(database.get(id,options))
     end
   end
 end

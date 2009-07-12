@@ -1,0 +1,16 @@
+%h1 
+  hansard
+  =@hansard['date']
+
+%ul
+  %li=@hansard['house']
+
+%ul
+  -for heading in @hansard['tree']
+    %li
+      =heading['title']
+      %ul
+        -for subheading in (heading['children'] || [])
+          %li
+            %a{:href => "/#{subheading['key']}"}=subheading['title']
+

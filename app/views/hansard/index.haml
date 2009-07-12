@@ -1,0 +1,8 @@
+hansard
+%ul
+  -for date in @dates
+    %li
+      %a{:href => hansard_path(date[0])}
+        =date.first
+        &mdash;
+        =date.last

@@ -27,6 +27,8 @@ module FixtureHelper
     query_file += '.js'
 
     fix = CouchFixture.new(query,query_file)
+    
+    puts fix.uri_path
 
     if $pull_fixtures && ! File.exist?(fix.path)
       fix.save!

@@ -47,6 +47,10 @@ class CouchFixture
 
   def save!
     mkdir_p File.dirname(path)
-    open(path,'w') {|f| f << pull}
+    value = pull
+
+    if value.size > 0
+      open(path,'w') {|f| f << value}
+    end
   end
 end

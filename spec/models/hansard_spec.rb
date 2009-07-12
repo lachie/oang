@@ -7,7 +7,17 @@ describe Hansard do
     end
 
     it "returns dates" do
-      Hansard.dates.should == [ ['2009/06/04','representatives'] ]
+      Hansard.dates.should == [ [Date.parse('2009-06-04'),'houses/federal/representatives'] ]
+    end
+  end
+
+  describe ".find" do
+    before do
+      fake_couch("hansard%2Ffederal%2Frepresentatives%2F2009-06-04")
+    end
+
+    it "returns the hansard" do
+      Hansard.find('federal/representatives/2009-06-04')
     end
   end
 end
