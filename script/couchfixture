@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/environment'
+require "#{Rails.root}/app/models/couch_fixture"
+
+CouchFixture.run(ARGV)
